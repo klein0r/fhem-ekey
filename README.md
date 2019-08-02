@@ -10,6 +10,10 @@ update check ekey
 update all ekey
 ```
 
+## Configuration
+
+See commandref for details
+
 ## License
 
 MIT License

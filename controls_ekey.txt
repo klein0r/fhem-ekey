@@ -1,0 +1,2 @@
+DEL ./FHEM/36_ekey.pm
+UPD 2019-08-02_16:41:10 4480 FHEM/36_ekey.pm
