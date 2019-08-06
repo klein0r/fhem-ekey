@@ -1,5 +1,5 @@
 #!/bin/bash   
-rm controls_abstracttable.txt
+rm controls_ekey.txt
 find ./FHEM -type f \( ! -iname ".*" \) -print0 | while IFS= read -r -d '' f; 
   do
    echo "DEL ${f}" >> controls_ekey.txt

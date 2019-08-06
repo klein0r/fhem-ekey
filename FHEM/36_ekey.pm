@@ -19,7 +19,7 @@ sub ekey_Initialize($)
     $hash->{DefFn} = "ekey_Define";
     $hash->{UndefFn} = "ekey_Undefine";
     $hash->{ReadFn}  = "ekey_Read";
-    $hash->{AttrList} = "ekeyType:home,multi " . $readingFnAttributes;
+    $hash->{AttrList} = "ekeyType:home,multi,net " . $readingFnAttributes;
 }
 
 sub ekey_Define($$)
@@ -82,12 +82,12 @@ sub ekey_Read($)
 
     readingsBulkUpdate($hash, "raw", $buf);
 
-    
+    my $ekeyType = AttrVal($name, "ekeyType", "home");
 
     my @values = split(/$delimiter/, $buf);
     Log3($name, 5, 'ekey_Read: ' . (scalar @values) . ' parts');
 
-    if (AttrVal($name, "ekeyType", 0) eq "multi") {
+    if ($ekeyType eq "multi") {
 
         # e.g. 1_0003_-----JOSEF_1_7_2_80156809150025_–GAR_3_-
 
@@ -101,6 +101,16 @@ sub ekey_Read($)
         readingsBulkUpdate($hash, "scanner-name", $values[7] =~ s/^-+//r);
         readingsBulkUpdate($hash, "action", $values[8]);
         readingsBulkUpdate($hash, "relay", $values[9]);
+
+    } elsif ($ekeyType eq "net") {
+
+        # e.g. 1_000001_8_80156809150025_123456
+
+        readingsBulkUpdate($hash, "type", $values[0]);
+        readingsBulkUpdate($hash, "user", $values[1]);
+        readingsBulkUpdate($hash, "finger", $values[2]);
+        readingsBulkUpdate($hash, "scanner", $values[3]);
+        readingsBulkUpdate($hash, "action", $values[4]);
 
     } else {
         # Default: home
@@ -128,7 +138,7 @@ sub ekey_Read($)
 <a name="ekey"></a>
 <h3>ekey</h3>
 <ul>
-  This module allows to receive and parse ekey UDP events sent by the CV LAN (for home and multi control units)<br>
+  This module allows to receive and parse ekey UDP events sent by the CV LAN (for home, net or multi control units)<br>
   For further information about the products visit <a href="https://www.ekey.net/">ekey.net</a>.<br>
   <br>
   <br>
@@ -167,7 +177,7 @@ sub ekey_Read($)
   <ul>
     <li>
         <a name="ekeyType"></a><code>ekeyType</code><br>
-        Set the type of the used control unit - home or multi
+        Set the type of the used control unit - home, net or multi
     </li>
   </ul>
   <br>
