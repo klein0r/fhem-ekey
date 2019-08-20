@@ -1,6 +1,6 @@
 # ekey FHEM Module
 
-This module receives UDP requests from ekey home or ekey multi LAN adapters on port of your choice.
+This module receives UDP requests from ekey home, net or ekey multi LAN adapters on a port of your choice.
 
 ## Installation
 
@@ -9,6 +9,46 @@ update add https://raw.githubusercontent.com/klein0r/fhem-ekey/master/controls_e
 update check ekey
 update all ekey
 ```
+
+## Available information
+
+The module splits all available readings in seperate readings automatically. You will get the following information:
+
+### ekey home
+
+Example request: ```1_0046_4_80156809150025_1_2```
+
+- type = ```1```
+- user = ```0046```
+- finger = ```4```
+- scanner = ```80156809150025```
+- action = ```1```
+- relay = ```2```
+
+### ekey multi
+
+Example request: ```1_0003_-----JOSEF_1_7_2_80156809150025_–GAR_3_-```
+
+- type = ```1```
+- user = ```0003```
+- user-name = ```JOSEF``` (removes leading dashes)
+- user-status = ```1```
+- finger = ```7```
+- key = ```2```
+- scanner = ```80156809150025```
+- scanner-name = ```GAR``` (removes leading dashes)
+- action = ```3```
+- relay = ```-```
+
+### ekey net
+
+Example request: ```1_000001_8_80156809150025_123456```
+
+- type = ```1```
+- user = ```000001```
+- finger = ```8```
+- scanner = ```80156809150025```
+- action = ```123456```
 
 ## Configuration
 
