@@ -96,11 +96,11 @@ sub ekey_Read($)
         readingsBulkUpdate($hash, "user-name", $values[2] =~ s/^-+//r);
         readingsBulkUpdate($hash, "user-status", $values[3]);
         readingsBulkUpdate($hash, "finger", $values[4]);
-        readingsBulkUpdate($hash, "key", $values[5]);
+        readingsBulkUpdate($hash, "relay", $values[5]);
         readingsBulkUpdate($hash, "scanner", $values[6]);
         readingsBulkUpdate($hash, "scanner-name", $values[7] =~ s/^-+//r);
         readingsBulkUpdate($hash, "action", $values[8]);
-        readingsBulkUpdate($hash, "relay", $values[9]);
+        readingsBulkUpdate($hash, "input", $values[9]);
 
     } elsif ($ekeyType eq "net") {
 
