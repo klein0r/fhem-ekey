@@ -34,11 +34,11 @@ Example request: ```1_0003_-----JOSEF_1_7_2_80156809150025_–GAR_3_-```
 - user-name = ```JOSEF``` (removes leading dashes)
 - user-status = ```1```
 - finger = ```7```
-- key = ```2```
+- relay = ```2```
 - scanner = ```80156809150025```
 - scanner-name = ```GAR``` (removes leading dashes)
 - action = ```3```
-- relay = ```-```
+- digital input = ```-```
 
 ### ekey net
 
